@@ -43,7 +43,7 @@ public class PostListingService {
 		List<BoardComment> comments = boardCommentRepo.findAllByBoardPost(boardPost);
 		if ( comments != null && comments.size() > 0 ) {
 			for ( BoardComment boardComment: comments) {
-				boardReplyRepo.deleteByIdBoardComment(boardComment);
+				boardReplyRepo.deleteByBoardComment(boardComment);
 				boardCommentRepo.delete(boardComment);
 			}
 		}

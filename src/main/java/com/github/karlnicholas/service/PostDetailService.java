@@ -33,7 +33,7 @@ public class PostDetailService {
 		return boardReplyRepo.findAllByBoardComment(boardComment, pageable);
 	}
 	public void deleteBoardComment(BoardComment boardComment) {
-		boardReplyRepo.deleteByIdBoardComment(boardComment);
+		boardReplyRepo.deleteByBoardComment(boardComment);
 		boardCommentRepo.delete(boardComment);
 	}
 	public BoardComment updateBoardComment(BoardComment boardComment) {
