@@ -20,9 +20,8 @@
 <body>
   <div class="container">
     <jsp:include page="/WEB-INF/template/navigation.jsp" />
-    <form method="post">
-      <textarea class="form-control focus" rows="3" name="newPostText" autofocus="autofocus"></textarea>
-      <button type="submit" class="btn btn-default">Create New Post</button>
+    <form method="post" id="newPostForm">
+      <textarea class="form-control" name="newPostText" rows="1" placeholder="Create new post" id="newPostText"></textarea>
     </form>
     <div class="list-group">
       <c:forEach var="post" items="${posts}">
@@ -32,5 +31,6 @@
   </div>
   <script src="webjars/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
   <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/js/board.js" type="text/javascript"></script>
 </body>
 </html>
