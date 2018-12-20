@@ -20,8 +20,11 @@
 <body>
   <div class="container">
     <jsp:include page="/WEB-INF/template/navigation.jsp" />
-    <form method="post" id="newPostForm">
-      <textarea class="form-control" name="newPostText" rows="1" placeholder="Create new post" id="newPostText"></textarea>
+    <form method="post" id="newPostForm" class="form-horizontal">
+      <div class="form-group">
+        <textarea class="form-control" name="newPostText" rows="1" placeholder="Create new post" id="newPostText"></textarea>
+      </div>
+      <div id="newPostButton"></div>
     </form>
     <div class="list-group">
       <c:forEach var="post" items="${posts}">

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,19 +29,21 @@ public class OpinionsBoardController {
 
 	@GetMapping
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Page<BoardPost> posts = postListingService.getBoardPosts(PageRequest.of(0, defaultListingMaxResults));
+		Page<BoardPost> posts = postListingService.getBoardPosts(PageRequest.of(0, defaultListingMaxResults, Sort.by(Direction.DESC, "date")));
 		request.setAttribute("posts", posts.getContent());
 		request.getRequestDispatcher("/WEB-INF/views/board.jsp").forward(request, response);
 	}
     
 	@PostMapping
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String newPostText = request.getParameter("newPostText");
-		logger.fine(()-> "NewPostText: " + newPostText);
-		if ( newPostText != null && !newPostText.isEmpty() ) {
-			BoardPost boardPost = new BoardPost();
-			boardPost.setPostText(newPostText.trim());
-			postListingService.createNewBoardPost(boardPost);
+		if ( request.getParameterMap().containsKey("newPostSubmit") ) {
+			String newPostText = request.getParameter("newPostText");
+			logger.fine(()-> "NewPostText: " + newPostText);
+			if ( newPostText != null && !newPostText.isEmpty() ) {
+				BoardPost boardPost = new BoardPost();
+				boardPost.setPostText(newPostText.trim());
+				postListingService.createNewBoardPost(boardPost);
+			}
 		}
 		response.sendRedirect(request.getContextPath());
     }
