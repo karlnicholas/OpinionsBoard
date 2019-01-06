@@ -22,7 +22,7 @@
     <jsp:include page="/WEB-INF/template/navigation.jsp" />
     <form method="post" id="newPostForm" class="form-horizontal">
       <div class="form-group">
-        <textarea class="form-control" name="newPostText" rows="1" placeholder="Create new post" id="newPostText"></textarea>
+        <textarea class="form-control" name="newPostText" rows="1" placeholder="New post ..." id="newPostText"></textarea>
       </div>
       <div id="newPostButton"></div>
     </form>

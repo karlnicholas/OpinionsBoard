@@ -27,15 +27,15 @@
     </div>    
     <form method="post" id="newCommentForm" class="form-horizontal">
       <div class="form-group">
-        <textarea class="form-control" name="newCommentText" rows="1" placeholder="Create new post" id="newCommentText"></textarea>
+        <textarea class="form-control" name="newCommentText" rows="1" placeholder="New comment ..." id="newCommentText"></textarea>
       </div>
       <div id="newCommentButton"></div>
-    </form>
     <div class="list-group">
       <c:forEach var="comment" items="${comments}">
-        <a class="list-group-item" href="${pageContext.request.contextPath}/post?postId=${boardPost.id}&commentDetail=${comment.id}">${comment.commentText}</a>
+        <div class="list-group-item" id="commentRow"><span id="textspan">${comment.commentText}</span></div>
       </c:forEach>
     </div>
+    </form>
   </div>
   <script src="webjars/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
   <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
