@@ -58,7 +58,7 @@ public class OpinionsPostController {
     
 	@PostMapping
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String newPostText = request.getParameter("newPostText").trim();
+		String newPostText = request.getParameter("newCommentText").trim();
 		String postId = request.getParameter("postId").trim();
 		logger.fine(()-> "Post Id: " + postId + " Post Text: " + newPostText);
 		if ( !newPostText.isEmpty() && !postId.isEmpty() ) {

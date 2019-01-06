@@ -8,5 +8,6 @@ $(document).ready(function() {
 	});
   $('#newPostButton').on('click', '#newPostCancel', function(){
 	  $('#newPostButton').empty();
+	  $('#newPostText').val('');
 	});
 });
