@@ -56,6 +56,7 @@ public class OpinionsPostController {
 		request.getRequestDispatcher("/WEB-INF/views/post.jsp").forward(request, response);
 	}
     
+	// could be new comment or could be new reply
 	@PostMapping
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String newPostText = request.getParameter("newCommentText").trim();
@@ -67,6 +68,23 @@ public class OpinionsPostController {
 			boardComment.setBoardPost(boardPost);
 			boardComment.setCommentText(newPostText);
 			postDetailService.createNewBoardComment(boardComment);
+		}
+		response.sendRedirect(request.getContextPath() + "/post?postId=" + postId);
+    }
+
+	// could be new comment or could be new reply
+	@PostMapping(path="/newReply")
+	protected void doNewReply(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String newReplyText = request.getParameter("newReplyText").trim();
+		String postId = request.getParameter("newReplyPostId").trim();
+		String commentId = request.getParameter("newReplyCommentId").trim();
+		logger.fine(()-> "Comment Id: " + commentId + " Reply Text: " + newReplyText);
+		if ( !newReplyText.isEmpty() && !commentId.isEmpty() ) {
+			BoardComment boardComment = postDetailService.getBoardComment(Long.decode( commentId ));
+			BoardReply boardReply = new BoardReply();
+			boardReply.setBoardComment(boardComment);
+			boardReply.setReplyText(newReplyText);
+			postDetailService.createNewBoardReply(boardReply);
 		}
 		response.sendRedirect(request.getContextPath() + "/post?postId=" + postId);
     }

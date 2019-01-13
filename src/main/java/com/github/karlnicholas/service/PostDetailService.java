@@ -29,6 +29,9 @@ public class PostDetailService {
 		}
 		boardCommentRepo.save(boardComment);
 	}
+	public BoardComment getBoardComment(Long commentId) {
+		return boardCommentRepo.getOne(commentId);
+	}
 	public Page<BoardReply> getBoardReplies(BoardComment boardComment, Pageable pageable) {
 		return boardReplyRepo.findAllByBoardComment(boardComment, pageable);
 	}

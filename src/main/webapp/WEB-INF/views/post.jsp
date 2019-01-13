@@ -18,7 +18,7 @@
     <![endif]-->
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="bodyContainer" data-postid="${param.postId}">
     <jsp:include page="/WEB-INF/template/navigation.jsp" />
     <div class="panel panel-default">
       <div class="panel-body">
@@ -30,12 +30,12 @@
         <textarea class="form-control" name="newCommentText" rows="1" placeholder="New comment ..." id="newCommentText"></textarea>
       </div>
       <div id="newCommentButton"></div>
+    </form>
     <div class="list-group">
       <c:forEach var="comment" items="${comments}">
-        <div class="list-group-item" id="commentRow"><span id="textspan">${comment.commentText}</span></div>
+        <div class="list-group-item" id="commentRow" data-commentid="${comment.id}"><span id="textspan">${comment.commentText}</span></div>
       </c:forEach>
     </div>
-    </form>
   </div>
   <script src="webjars/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
   <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
